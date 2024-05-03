@@ -28,6 +28,8 @@ public class EFT_S9_Kevin_Rojas {
         promosTeatro[0][1] = "10";
         promosTeatro[1][0] = "Promo Tercera Edad";
         promosTeatro[1][1] = "15";
+        promosTeatro[2][0] = "No promo";
+        promosTeatro[2][1] = "0";
         eventosTeatro.add("Teatro: Hamlet William Shakespeare");
         eventosTeatro.add("Concierto: Orquesta Filarmonica de Viena");
                                    
@@ -126,7 +128,7 @@ public class EFT_S9_Kevin_Rojas {
                                            """); 
                         int subMenuVentaOp = scanner.nextInt();
                         if(subMenuVentaOp == 1){
-                            motrarEventos();
+                            mostrarEventos();
                         }else if(subMenuVentaOp == 2){
                             agregarEvento();
                         }else if(subMenuVentaOp == 3){
@@ -199,7 +201,7 @@ public class EFT_S9_Kevin_Rojas {
         System.out.println("Evento ingresado correctamente!"); 
     }
     
-    public static void motrarEventos(){
+    public static void mostrarEventos(){
         for (int i = 0; i < eventosTeatro.size(); i++) {
             String eventos = eventosTeatro.get(i);
             System.out.println("ID: " + (i+1)+"\n"+eventos);
@@ -411,12 +413,12 @@ public class EFT_S9_Kevin_Rojas {
                 System.out.println("#####################################");
                 String descuentoAplicado = ("Descuento: " + nombrePromo + " "+ porcentajeDescuento+"%");
                 entradasTeatro.add("Tipo Evento: "+ (eventosTeatro.get(seleccionEvento-1))+"\n"+"Tipo de Entrada: "+entradaTipoBoleta+"\n"+"Costo Base: "+entradaCostoBase+"\n"+"Descuento Aplicado: "+descuentoAplicado+"\n"+"Ubicacion: "+ubicacionAsiento+"\n"+"Costo Final: "+ finalPrecio);               
-            } else {             
+            }else {             
                 System.out.println("La entrada seleccionada no está definida.");
             }
         }else{
                 System.out.println("El índice seleccionado está fuera de los límites del array.");
-        }   
+        }       
     }    
 
     public static void ingresarVentas(){ 
@@ -424,7 +426,7 @@ public class EFT_S9_Kevin_Rojas {
         boolean ingresoOk = false;
         while(!ingresoOk){
             System.out.println("#### SELECCION DE EVENTO ####");
-            motrarEventos();
+            mostrarEventos();
             System.out.println("Ingrese el evento deseado por Id: ");
             seleccionEvento = scanner.nextInt();
 
@@ -449,6 +451,7 @@ public class EFT_S9_Kevin_Rojas {
                     ingresarClientes();
                     if ((validarAsiento == true) && tipoEntrada == 1 || tipoEntrada == 2 || tipoEntrada ==3){
                         validarVenta(tipoPromo-1, seleccionAsiento, tipoEntrada);
+                        ingresoOk = true;
                     }else{
                         System.out.println("Revisar las opciones elegidas..!");
                     }
@@ -490,5 +493,4 @@ public class EFT_S9_Kevin_Rojas {
             validarAsiento = false;
         }
     }
-
 }
